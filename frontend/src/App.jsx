@@ -42,7 +42,8 @@ function App() {
         }
 
         try {
-            const url = operation === 'encrypt' ? 'http://localhost:5000/api/encrypt' : 'http://localhost:5000/api/decrypt';
+            const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const url = operation === 'encrypt' ? `${baseUrl}/api/encrypt` : `${baseUrl}/api/decrypt`;
             const response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
